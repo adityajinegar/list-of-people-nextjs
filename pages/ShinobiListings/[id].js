@@ -1,6 +1,6 @@
 export const getStaticPaths = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
-  const data = res.json();
+  const data = await res.json();
 
   const paths = data.map((shinobi) => {
     return {
@@ -14,10 +14,25 @@ export const getStaticPaths = async () => {
   };
 };
 
-const Details = () => {
+export const getStaticProps = async (context) => {
+  const id = context.params.id;
+
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+
+  const data = await res.json();
+
+  return {
+    props: { shinobi: data },
+  };
+};
+
+const Details = ({ shinobi }) => {
   return (
     <div>
-      <h1>Details Page</h1>
+      <h1>{shinobi.name}</h1>
+      <p>{shinobi.email}</p>
+      <p>{shinobi.website}</p>
+      <p>{shinobi.address.city}</p>
     </div>
   );
 };
