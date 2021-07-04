@@ -26,7 +26,7 @@ export default function Home() {
           repellendus ab eligendi? Ipsum harum deserunt architecto odit illo
           exercitationem itaque!
         </p>
-        <Link href="/Listings">
+        <Link href="/ShinobiListings">
           <a className={styles.btn}>See Aditya Listing</a>
         </Link>
       </div>
